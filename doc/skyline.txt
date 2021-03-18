@@ -1,19 +1,15 @@
-*skyline.txt*  A minimal, no nonsense statusline plugin for Vim
+*skyline.txt*	A simple statusline for Vim and Neovim
 
 ==============================================================================
-Version: 2.0
 Author: ourigen (https://github.com/ourigen)
 Repository: https://github.com/ourigen/skyline.vim
-License: GNU General Public License
-Last Change: 2021/02/21
 ==============================================================================
 
 CONTENTS                                                    *skyline-contents*
 
-    1. Introduction ....................................... |skyline-intro|
-    2. Option ............................................|skyline-options|
-    3. Usage .............................................. |skyline-usage|
-    4. Changelog ...................................... |skyline-changelog|
+	1. Introduction .......................... |skyline-intro|
+	2. Options ............................... |skyline-options|
+	3. Usage ................................. |skyline-usage|
 
 ==============================================================================
 
@@ -29,12 +25,12 @@ is not as feature-packed. That being said, if you are looking for a minimal,
 functional statusline that expands upon (and is easier to configure than) the
 default `:h statusline`, look no further.
 
-The notable features of `skyline.vim` are:
+The notable features of *skyline.vim* are:
 
-* a dynamic mode module, whose color and text changes to indicate your editing
-* mode word and line count modules, perfect for Vimmers that are writers
+* a dynamic mode module, whose color changes to indicate your editing mode
 * a git branch module, supported by https://github.com/tpope/vim-fugitive
 or plugin-less
+* word and line count modules, perfect for Vimmers that are writers
 * show and hide many modules at will with simple `g:skyline` variables
 
 ==============================================================================
@@ -42,7 +38,7 @@ or plugin-less
 2. Option                                                    *skyline-options*
 
 ------------------------------------------------------------------------------
-                                                         *'skyline_gitbranch'*
+                                                           *skyline_gitbranch*
 
 	Show (1) or hide (0) the branch when the file is tracked by git
 >
@@ -51,7 +47,7 @@ or plugin-less
 	Default value: 0
 
 ------------------------------------------------------------------------------
-                                                              *'skyline_path'*
+                                                                *skyline_path*
 
 	Show either the tail of the path (0) or the relative path (1)
 >
@@ -60,63 +56,63 @@ or plugin-less
 	Default value: 1
 
 ------------------------------------------------------------------------------
-                                                           *'skyline_preview'*
+                                                             *skyline_preview*
 
 	Show (1) or hide (0) `[Preview]` flag on applicable buffers
 >
-	let g:skyline_preview_flag = 1
+	let g:skyline_preview = 1
 <
 	Default value: 0
 
 ------------------------------------------------------------------------------
-                                                         *'skyline_fileformat*
+                                                          *skyline_fileformat*
 
 	Show (1) or hide (0) file format (`unix, dos`)
 >
-	let g:skyline_file_format = 0
+	let g:skyline_fileformat = 0
 <
 	Default value: 1
 
 ------------------------------------------------------------------------------
-                                                           *'skyline_encoding*
+                                                            *skyline_encoding*
 
 	Show (1) or hide (0) file encoding (`utf-8, utf-16`)
 >
-	let g:skyline_show_encoding = 0
+	let g:skyline_encoding = 0
 <
 	Default value: 1
 
 ------------------------------------------------------------------------------
-                                                          *'skyline_wordcount*
+                                                           *skyline_wordcount*
 
-	Show (1) or hide (0) the total word count of the file/visual selection
+	Show (1) or hide (0) the word count of the file/visual selection
 >
 	let g:skyline_wordcount = 1
 <
 	Default value: 0
 
 ------------------------------------------------------------------------------
-                                                         *'skyline_linecount'*
+                                                           *skyline_linecount*
 
-	Show (1) or hide (0) total line count
+	Show (1) or hide (0) the total line count
 >
 	let g:skyline_linecount = 1
 <
 	Default value: 0
 
 ------------------------------------------------------------------------------
-                                                           *'skyline_percent'*
+                                                             *skyline_percent*
 
-	Show (1) or hide (0) the percentage of the current line through the file
+	Show (1) or hide (0) the percentage through file
 >
 	let g:skyline_percent = 0
 <
 	Default value: 1
 
 ------------------------------------------------------------------------------
-                                                          *'skyline_lineinfo'*
+                                                            *skyline_lineinfo*
 
-	Show (1) or hide (0) the current line and column position of the cursor
+	Show (1) or hide (0) the line:column cursor position
 >
 	let g:skyline_lineinfo = 0
 <
@@ -124,36 +120,4 @@ or plugin-less
 
 ==============================================================================
 
-4. Changelog                                               *skyline-changelog*
-
-v2.0 (2021/02/21)
-
-	- Refactored: remove tabline, remove extra options, move to autoload
-    - Added modules: file size, path
-
-v1.6 (2020/01/24)
-
-	- Minor improvement: allow use of fugitive.vim for branch if loaded
-
-v1.5 (2020/01/21)
-
-	- Added feature: word counter updates on visual selection
-
-v1.0 (2019/12/30)
-
-	- Fixed color loss when sourcing $MYVIMRC
-	- Fixed visual block mode on Vim
-	- Added line number option
-	- Fixed full file path toggle
-	- Removed dependency on fugitive.vim
-	- Removed Syntastic support
-
-------------------------------------------------------------------------------
-
-v0.1 (2019/12/29)
-
-	- Initial release
-
-==============================================================================
-
-vim:tw=78:ts=4:sw=4:ft=help:norl:
+vim:tw=78:ts=8:noet:ft=help:norl:

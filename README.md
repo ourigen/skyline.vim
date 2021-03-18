@@ -2,13 +2,13 @@
 
 skyline.vim is a simple statusline plugin for Vim.
 
-It is a much slimmer alternatives to plugins like [powerline](https://github.com/powerline/powerline), [vim-airline](https://github.com/vim-airline/vim-airline), or [lightline.vim](https://github.com/itchyny/lightline.vim). But, of course, it is not as feature-packed. That being said, if you are looking for a minimal, functional statusline that expands upon (and is easier to configure than) the default `:h statusline`, look no further.
+It is a much slimmer alternatives to plugins like [powerline](https://github.com/powerline/powerline), [vim-airline](https://github.com/vim-airline/vim-airline), or [lightline.vim](https://github.com/itchyny/lightline.vim). But, of course, it is not as feature-packed. That being said, if you are looking for a minimal, functional statusline that expands upon and is easier to configure than the default `:h statusline`, look no further.
 
 The notable features of `skyline.vim` are:
 
-* a dynamic mode module, whose color and text changes to indicate your editing mode
-* word and line count modules, perfect Vimmers that are writers
+* a dynamic mode module, whose color changes to indicate your editing mode
 * a git branch module, supported by [vim-fugitive](https://github.com/tpope/vim-fugitive) or plugin-less
+* word and line count modules, perfect Vimmers that are writers
 * show and hide many modules at will with simple `g:skyline*` variables
 
 ## Installation
@@ -26,18 +26,20 @@ Plug 'ourigen/skyline.vim'
 ### [Native `:packadd`](https://vimhelp.org/repeat.txt.html#packages)
 
 ```sh
-### Vim ###
+# NOTE: You can replace `bundle` with any directory name
+
+# Vim instructions
 mkdir -p ~/.vim/pack/bundle/start
 cd ~/.vim/pack/bundle/start
 git clone https://github.com/ourigen/skyline.vim
-# generating helptags for `:h skyline.vim`
+# generating helptags for `:h skyline.txt`
 vim -u NONE -c "helptags skyline.vim/doc" -c q
 
-### NeoVim ###
+# Neovim instructions
 mkdir -p  ~/.config/nvim/pack/bundle/start
 cd ~/.config/nvim/pack/bundle/start
 git clone https://github.com/ourigen/skyline.vim
-# generating helptags for `:h skyline.vim`
+# generating helptags for `:h skyline.txt`
 nvim -u NONE -c "helptags skyline.vim/doc" -c q
 ```
 
@@ -79,5 +81,4 @@ nvim -u NONE -c "helptags skyline.vim/doc" -c q
 
 * For more information, refer to the [skyline.vim documentation](doc/skyline.txt).
 * This plugin is licensed under [GNU General Public License](LICENSE.md).
-* This repository is a mirror of [my repository hosted on Gitlab](https://gitlab.com/maister/skyline.vim). Development will arrive at Gitlab first, but I will keep both updated.
-* This plugin was my first venture into Vimscript, so there are rough edges that I am actively working to improve as I learn more.
+* This repository is a mirror of [my repository hosted on Gitlab](https://gitlab.com/maister/skyline.vim).
