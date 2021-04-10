@@ -45,23 +45,27 @@ nvim -u NONE -c "helptags skyline.vim/doc" -c q
 
 ## Options
 
-* `g:skyline_gitbranch` Set `let g:skyline_gitbranch = 1` if you want to show the branch of your file. Defaults to 0.
+* `g:skyline_gitbranch` Set `let g:skyline_gitbranch = 1` to show the branch of your file. Defaults to 0.
 
 * `g:skyline_path` Set `let g:skyline_path = 0` if you only want the tail (file name) of the path. Defaults to 1 for full relative path.
 
-* `g:skyline_preview` Set `let g:skyline_preview = 1` if you want `[Preview]` flag on applicable buffers. Defaults to 0.
+* `g:skyline_preview` Set `let g:skyline_preview = 1` `[Preview]` flag on applicable buffers. Defaults to 0.
 
-* `g:skyline_fileformat` Set `let g:skyline_fileformat = 0` if you want to hide the file format. Defaults to 1.
+* `g:skyline_fileformat` Set `let g:skyline_fileformat = 0` to hide the file format. Defaults to 1.
 
-* `g:skyline_encoding`  Set `let g:skyline_encoding = 0` if you want to hide the file encoding. Defaults to 1.
+* `g:skyline_encoding`  Set `let g:skyline_encoding = 0` to hide the file encoding. Defaults to 1.
 
-* `g:skyline_wordcount` Set `let g:skyline_wordcount = 1` if you want to show the total word count of the file / visual selection. Defaults to 0.
+* `g:skyline_wordcount` Set `let g:skyline_wordcount = 1` to show the total word count of the file / visual selection. Defaults to 0.
 
-* `g:skyline_linecount` Set `let g:skyline_linecount = 1` if you want to show the total line count of the file. Defaults to 0.
+* `g:skyline_linecount` Set `let g:skyline_linecount = 1` to show the total line count of the file. Defaults to 0.
 
-* `g:skyline_percent` Set `let g:skyline_percent = 0` if you want to hide the percentage through file. Defaults to 1.
+* `g:skyline_percent` Set `let g:skyline_percent = 0` to hide the percentage through file. Defaults to 1.
 
-* `g:skyline_lineinfo` Set `let g:skyline_lineinfo = 0` if you want to hide the line : column position. Defaults to 1.
+* `g:skyline_lineinfo` Set `let g:skyline_lineinfo = 0` to hide the line : column position. Defaults to 1.
+
+* `g:skyline_filetype` Set `let g:skyline_filetype = 0` to hide filetype. Defaults to 1.
+
+* `g:skyline_bufnum` Set `let g:skyline_bufnum = 0` to hide buffer number. Defaults to 1.
 
 ## Screenshots
 
@@ -81,4 +85,3 @@ nvim -u NONE -c "helptags skyline.vim/doc" -c q
 
 * For more information, refer to the [skyline.vim documentation](doc/skyline.txt).
 * This plugin is licensed under [GNU General Public License](LICENSE.md).
-* This repository is a mirror of [my repository hosted on Gitlab](https://gitlab.com/maister/skyline.vim).

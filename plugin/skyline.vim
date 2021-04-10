@@ -25,6 +25,8 @@ let g:skyline_wordcount = get(g:, 'skyline_wordcount', '0')
 let g:skyline_linecount = get(g:, 'skyline_linecount', '0')
 let g:skyline_percent = get(g:, 'skyline_percent', '1')
 let g:skyline_lineinfo = get(g:, 'skyline_lineinfo', '1')
+let g:skyline_filetype = get(g:, 'skyline_filetype', '1')
+let g:skyline_bufnum = get(g:, 'skyline_bufnum', '1')
 " ======
 
 function! ActiveStatus()
@@ -60,7 +62,11 @@ function! ActiveStatus()
     let statusline.=path_options[g:skyline_path]
 
     " === Filetype, modified, readonly flag [vim,+,RO] ===
-    let l:statusline.='%#Comment#%( [%{&filetype}%M%R]%)'
+    if g:skyline_filetype
+        let l:statusline.='%#Comment#%( [%{&filetype}%M%R]%)'
+    else
+        let l:statusline.='%#Comment#%( %m%)'
+    endif
     let l:statusline.='%#Normal#'
 
     " === Preview flag [Preview] ===
@@ -102,7 +108,9 @@ function! ActiveStatus()
     endif
 
     " === Buffer number ===
-    let l:statusline.='%( %#LineNr#[%n] %)'
+    if g:skyline_bufnum
+        let l:statusline.='%( %#LineNr#[%n] %)'
+    endif
 
     return l:statusline
 endfunction
@@ -121,7 +129,9 @@ function! InactiveStatus()
     let l:statusline.='%='
 
     " === Buffer number ===
-    let l:statusline.='%( [%n] %)'
+    if g:skyline_bufnum
+        let l:statusline.='%( [%n] %)'
+    endif
 
     return l:statusline
 endfunction
