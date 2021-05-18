@@ -45,11 +45,12 @@ nvim -u NONE -c "helptags skyline.vim/doc" -c q
 
 ## Options
 
-* `g:skyline_gitbranch` Set `let g:skyline_gitbranch = 1` to show the branch of your file. Defaults to 0.
+* `g:skyline_ale` Set `let g:skyline_ale = 1` to show linter errors and warnings. Depends on
+	[ALE](https://github.com/dense-analysis/ale). Defaults to 0.
+
+* `g:skyline_fugitive` Set `let g:skyline_fugitive = 1` to show the branch of your file. Depends on [vim-fugitive](https://github.com/tpope/vim-fugitive). Defaults to 0.
 
 * `g:skyline_path` Set `let g:skyline_path = 0` if you only want the tail (file name) of the path. Defaults to 1 for full relative path.
-
-* `g:skyline_preview` Set `let g:skyline_preview = 1` `[Preview]` flag on applicable buffers. Defaults to 0.
 
 * `g:skyline_fileformat` Set `let g:skyline_fileformat = 0` to hide the file format. Defaults to 1.
 
