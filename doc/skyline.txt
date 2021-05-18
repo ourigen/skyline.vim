@@ -27,9 +27,9 @@ default `:h statusline`, look no further.
 
 The notable features of *skyline.vim* are:
 
-* a dynamic mode module, whose color changes to indicate your editing mode
 * a git branch module, supported by https://github.com/tpope/vim-fugitive
-or plugin-less
+* a linter info module, supported by https://github.com/dense-analysis/ale
+* a dynamic mode module, whose color changes to indicate your editing mode
 * word and line count modules, perfect for Vimmers that are writers
 * show and hide many modules at will with simple `g:skyline` variables
 
@@ -38,11 +38,20 @@ or plugin-less
 2. Option                                                    *skyline-options*
 
 ------------------------------------------------------------------------------
-                                                           *skyline_gitbranch*
+                                                                 *skyline_ale*
 
-	Show (1) or hide (0) the branch when the file is tracked by git
+	Show (1) or hide (0) linter information provided by ALE
 >
-	let g:skyline_gitbranch = 1
+	let g:skyline_ale = 1
+<
+	Default value: 0
+
+------------------------------------------------------------------------------
+                                                            *skyline_fugitive*
+
+	Show (1) or hide (0) the git branch provided by fugitive.vim
+>
+	let g:skyline_fugitive = 1
 <
 	Default value: 0
 
@@ -54,15 +63,6 @@ or plugin-less
 	let g:skyline_path = 0
 <
 	Default value: 1
-
-------------------------------------------------------------------------------
-                                                             *skyline_preview*
-
-	Show (1) or hide (0) `[Preview]` flag on applicable buffers
->
-	let g:skyline_preview = 1
-<
-	Default value: 0
 
 ------------------------------------------------------------------------------
                                                           *skyline_fileformat*

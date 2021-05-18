@@ -1,8 +1,7 @@
 " ============================================================
 " File: skyline.vim
 " Maintainer: ourigen <https://github.com/ourigen>
-" Description: A minimal yet configurable statusline plugin
-" Last Updated: 17 February 2021
+" Description: An easily-configurable statusline plugin
 " ============================================================
 
 if exists('g:loaded_skyline')
@@ -16,9 +15,12 @@ set cpoptions&vim
 set laststatus=2
 
 " === User configuration variables ===
-let g:skyline_gitbranch = get(g:, 'skyline_gitbranch', '0')
+" TODO: Changed skyline_gitbranch -> skyline_fugitive.
+" Update docs and add check if skyline_gitbranch exists
+let g:skyline_fugitive = get(g:, 'skyline_fugitive', '0')
+let g:skyline_ale = get(g:, 'skyline_ale', '0')
 let g:skyline_path = get(g:, 'skyline_path', '1')
-let g:skyline_preview = get(g:, 'skyline_preview', '0')
+" let g:skyline_preview = get(g:, 'skyline_preview', '0')
 let g:skyline_fileformat = get(g:, 'skyline_fileformat', '1')
 let g:skyline_encoding = get(g:, 'skyline_encoding', '1')
 let g:skyline_wordcount = get(g:, 'skyline_wordcount', '0')
@@ -33,33 +35,40 @@ function! ActiveStatus()
     let l:statusline=''
 
     "=== Dynamic mode color ===
-    let l:statusline.='%#String#%{(mode()=="n")?"   NORMAL  ":""}'
-    let l:statusline.='%#String#%{(mode()=="c")?"   COMMAND  ":""}'
-    let l:statusline.='%#Function#%{(mode()=="i")?"   INSERT  ":""}'
-    let l:statusline.='%#Function#%{(mode()=="t")?"   TERMINAL  ":""}'
-    let l:statusline.='%#Statement#%{(mode()=="v")?"   VISUAL  ":""}'
-    let l:statusline.='%#Statement#%{(mode()=="\<C-v>")?"   VISUAL  ":""}'
-    let l:statusline.='%#Identifier#%{(mode()=="R")?"   REPLACE  ":""}'
-    let l:statusline.='%#Identifier#%{(mode()=="s")?"   SELECT  ":""}'
+    let l:statusline.='%#String#'
+    let l:statusline.='%{(mode()=="n")?"▎  NORMAL  ":""}'
+    let l:statusline.='%{(mode()=="c")?"▎  COMMAND  ":""}'
+    let l:statusline.='%#Function#'
+    let l:statusline.='%{(mode()=="i")?"▎  INSERT  ":""}'
+    let l:statusline.='%{(mode()=="t")?"▎  TERMINAL  ":""}'
+    let l:statusline.='%#Statement#'
+    let l:statusline.='%{(mode()=="v")?"▎  VISUAL  ":""}'
+    let l:statusline.='%{(mode()=="\<C-v>")?"▎  VISUAL  ":""}'
+    let l:statusline.='%#Identifier#'
+    let l:statusline.='%{(mode()=="R")?"▎  REPLACE  ":""}'
+    let l:statusline.='%{(mode()=="s")?"▎  SELECT  ":""}'
 
     " === Resets color ===
     let l:statusline.='%#Normal#'
 
     " === Git branch ===
     if g:skyline_gitbranch
+        echo 'g:skyline_gitbranch was changed to g:skyline_fugitive. Please update the setting'
+    endif
+    if g:skyline_fugitive
         let l:statusline.='%#Type#'
-        if exists('g:loaded_fugitive')
-            let l:statusline.='%(%{skyline#Fugitive()}%)'
-        else
-            let l:statusline.='%(%{skyline#GitBranch()}%)'
-        endif
+        " if exists('g:loaded_fugitive')
+        let l:statusline.='%(%{skyline#fugitive#branch()}%)'
+        " else
+        "     let l:statusline.='%(%{skyline#base#GitBranch()}%)'
+        " endif
         let l:statusline.='%#Normal#'
     endif
 
     " === File path ===
     " g:skyline_pah :: 1 = tail, 2 = full path
-    let path_options = [ ' %t', ' %#Comment#%{skyline#FileDir()}%#Normal#%t' ]
-    let statusline.=path_options[g:skyline_path]
+    let path_options = [ ' %t', ' %#Comment#%{skyline#base#directory()}%#Normal#%t' ]
+    let l:statusline.=path_options[g:skyline_path]
 
     " === Filetype, modified, readonly flag [vim,+,RO] ===
     if g:skyline_filetype
@@ -70,41 +79,49 @@ function! ActiveStatus()
     let l:statusline.='%#Normal#'
 
     " === Preview flag [Preview] ===
-    if g:skyline_preview
-        let l:statusline.='%( %w%)'
-    endif
+    " if g:skyline_preview
+    "     let l:statusline.='%( %w%)'
+    " endif
 
     " === Divider ===
     let l:statusline.='%='
 
+    " === ALE lint status ===
+    if g:skyline_ale
+        let l:statusline.='%#String#%(%{skyline#ale#ok()} %)'
+        let l:statusline.='%#Error#%(%{skyline#ale#errors()} %)'
+        let l:statusline.='%#WarningMsg#%(%{skyline#ale#warnings()} %)'
+        let l:statusline.='%#Normal#'
+    endif
+
     " === File format ===
     if g:skyline_fileformat
-        let l:statusline.='%( %{skyline#FileFormat()} |%)'
+        let l:statusline.='%( %{skyline#base#fileformat()}  %)'
     endif
 
     " === File encoding ===
     if g:skyline_encoding
-        let l:statusline.='%( %{skyline#FileEncoding()} |%)'
+        let l:statusline.='%( %{skyline#base#fileencoding()}  %)'
     endif
 
     " === Word count ===
     if g:skyline_wordcount
-        let l:statusline.='%( %{skyline#WordCount()} words |%)'
+        let l:statusline.='%( %{skyline#base#wordcount()} words  %)'
     endif
 
     " === Line count ===
     if g:skyline_linecount
-        let l:statusline.=' %L lines |'
+        let l:statusline.=' %L lines  '
     endif
 
     " === Relative line number ===
     if g:skyline_percent
-        let l:statusline.=' %3p%% |'
+        let l:statusline.=' %3p%%  '
     endif
 
     " === Line:column number ===
     if g:skyline_lineinfo
-        let l:statusline.=' %3l:%-3c |'
+        let l:statusline.=' %3l:%-3c  '
     endif
 
     " === Buffer number ===
