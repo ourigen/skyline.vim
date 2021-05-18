@@ -81,7 +81,15 @@ nvim -u NONE -c "helptags skyline.vim/doc" -c q
 ### Dynamic Word Count Module
 ![](asset/word.png)
 
-## Author's Notes
+## News and Notes
 
 * For more information, refer to the [skyline.vim documentation](doc/skyline.txt).
 * This plugin is licensed under [GNU General Public License](LICENSE.md).
+* **NEW**: A `dev` branch was created to test out redesigns and integrations.
+Notable changes are [ALE](https://github.com/dense-analysis/ale) integration for linter information,
+removal of plugin-less git branch parsing, removal of `g:skyline_preview`,
+and changing delimiter from `|` to ` `. To try out the `dev`, use
+
+```vim
+Plug 'ourigen/skyline.vim', { 'branch': 'dev' }
+```
