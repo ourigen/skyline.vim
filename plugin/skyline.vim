@@ -17,6 +17,7 @@ set laststatus=2
 " === User configuration variables ===
 " TODO: Changed skyline_gitbranch -> skyline_fugitive.
 " Update docs and add check if skyline_gitbranch exists
+let g:skyline_gitbranch = get(g:, 'skyline_gitbranch', '0')
 let g:skyline_fugitive = get(g:, 'skyline_fugitive', '0')
 let g:skyline_ale = get(g:, 'skyline_ale', '0')
 let g:skyline_path = get(g:, 'skyline_path', '1')
