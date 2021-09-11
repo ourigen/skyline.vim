@@ -1,4 +1,4 @@
-function! skyline#FileDir() abort
+function! skyline#base#directory() abort
     let l:directory = expand('%:h')
     if winwidth(0) <= 80
         let l:directory = pathshorten(l:directory)
@@ -9,7 +9,7 @@ function! skyline#FileDir() abort
     return ''
 endfunction
 
-function! skyline#FileType() abort
+function! skyline#base#filetype() abort
     if winwidth(0) > 100
         if &filetype !=# ''
             return &filetype
@@ -18,14 +18,14 @@ function! skyline#FileType() abort
     return ''
 endfunction
 
-function! skyline#FileFormat() abort
+function! skyline#base#fileformat() abort
     if winwidth(0) > 100
         return &fileformat
     endif
     return ''
 endfunction
 
-function! skyline#FileEncoding() abort
+function! skyline#base#fileencoding() abort
     if winwidth(0) > 100
         if &fileencoding !=# ''
             return &fileencoding
@@ -36,7 +36,7 @@ function! skyline#FileEncoding() abort
     return ''
 endfunction
 
-function! skyline#WordCount() abort
+function! skyline#base#wordcount() abort
     let currentmode = mode()
     if !exists('g:lastmode_wc')
         let g:lastmode_wc = currentmode
@@ -64,25 +64,7 @@ function! skyline#WordCount() abort
     endif
 endfunction
 
-function! skyline#Fugitive() abort
-    if exists('g:loaded_fugitive')
-        let l:branch = fugitive#head()
-        return l:branch !=# '' ? ' ' . branch : ''
-    endif
-    return ''
-endfunction
-
-" alternative branch parsing if fugitive.vim not installed
-function! skyline#GitBranch() abort
-    let l:branch = system('cd '.expand('%:p:h').' && git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d "\n"')
-    if !strlen(l:branch) || !isdirectory(expand('%:p:h'))
-        return ''
-    else
-        return ' ' . l:branch . ''
-    endif
-endfunction
-
-function! skyline#FileSize() abort
+function! skyline#base#filesize() abort
     let l:size = getfsize(expand('%'))
     if l:size == 0 || l:size == -1 || l:size == -2
         return ''
@@ -98,13 +80,12 @@ function! skyline#FileSize() abort
     endif
 endfunction
 
-function! skyline#ALEError() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:errors = l:counts.error + l:counts.style_error
-    let l:warnings = l:counts.warning + l:counts.style_warning
-
-    let l:total = l:errors + l:warnings
-
-    return l:total == 0 ? '' : printf( '%d errors %d warnings |', errors, warnings)
-endfunction
+" alternative branch parsing if fugitive.vim not installed
+" function! skyline#fugitive#GitBranch() abort
+"     let l:branch = system('cd '.expand('%:p:h').' && git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d "\n"')
+"     if !strlen(l:branch) || !isdirectory(expand('%:p:h'))
+"         return ''
+"     else
+"         return ' ' . l:branch . ''
+"     endif
+" endfunction
