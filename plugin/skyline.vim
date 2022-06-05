@@ -12,7 +12,9 @@ let g:loaded_skyline = 1
 let s:save_cpoptions = &cpoptions
 set cpoptions&vim
 
-set laststatus=2
+if &laststatus != 3
+    set laststatus=2
+endif
 
 " === User configuration variables ===
 " TODO: Changed skyline_gitbranch -> skyline_fugitive.
