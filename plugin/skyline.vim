@@ -137,7 +137,7 @@ function! InactiveStatus()
     let l:statusline='%#StatusLineNC#'
 
     " === File path ===
-    let path_options = [ ' %t', ' %F' ]
+    let path_options = [ ' %t', ' %{skyline#base#directory()}%t' ]
     let statusline.=path_options[g:skyline_path]
 
     " === Modified flag [+] ===

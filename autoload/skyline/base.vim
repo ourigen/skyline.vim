@@ -1,5 +1,5 @@
 function! skyline#base#directory() abort
-    let l:directory = expand('%:h')
+    let l:directory = expand('%:p:.:h')
     if winwidth(0) <= 80
         let l:directory = pathshorten(l:directory)
     endif
